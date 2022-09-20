@@ -120,8 +120,8 @@ body{
 }
 
 .selected{
-    background: #293264;
-    color: white;
+    background: #D6DBF5;
+    color: #293264;
 }
 
 /* Footer */
@@ -168,4 +168,8 @@ body{
     align-items: center;
     gap: 0;
   }
+}
+
+.category {
+    padding: 10px 0;
 }

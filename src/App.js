@@ -6,15 +6,17 @@ import { nanoid } from "nanoid";
 function App() {
   const [isStarted, setIsStarted] = React.useState(false);
   const [questions, setQuestions] = React.useState([]);
-  const [isClicked,setIsClicked] = React.useState(false);
+  const [isClicked, setIsClicked] = React.useState(false);
+  const [category, setCategory] = React.useState(0)
 
   function startQuiz() {
     setIsStarted(true);
-    console.log("Clicked");
   }
 
+  let url = `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`;
+
   React.useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setQArray(data.results));
 
@@ -51,16 +53,21 @@ function App() {
 
         return queObj;
       });
-      setQuestions(queObj)
+      setQuestions(queObj);
     }
-  }, []);
+  }, [url]);
 
   return (
     <div className="container">
       {isStarted ? (
-        <Quiz questions={questions} handleClick={setQuestions} isClicked={isClicked} setIsClicked={setIsClicked}/>
+        <Quiz
+          questions={questions}
+          handleClick={setQuestions}
+          isClicked={isClicked}
+          setIsClicked={setIsClicked}
+        />
       ) : (
-        <StartPage startQuiz={startQuiz} />
+        <StartPage startQuiz={startQuiz} setCategory={setCategory}/>
       )}
     </div>
   );
