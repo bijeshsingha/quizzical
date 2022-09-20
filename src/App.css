@@ -102,14 +102,13 @@ body{
     display: flex;
     flex-direction: column;
     width: 90%;
-    border-bottom: 1px solid #293264;
     padding-bottom: 1rem;
-    float: left;
+    border-bottom: 1px solid #293264;
 }
 
 .options{
     display: flex;
-    list-style: none;
+    flex-direction: row;
     gap: 2rem;
 }
 
@@ -118,7 +117,6 @@ body{
     border: 1.5px solid #293264;
     border-radius: 10px;
     cursor: pointer;
-    float:left;
 }
 
 .selected{
@@ -151,3 +149,24 @@ body{
     color: #293264;
 }
 
+
+
+@media only screen and (max-width: 600px) {
+    
+  body {
+    background-color: lightblue;
+  }
+  .question{
+    padding: 10px;
+  }
+  .options{
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .footer{
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+}
