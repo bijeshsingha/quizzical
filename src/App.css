@@ -120,7 +120,6 @@ body{
 }
 
 .selected{
-    border: none;
     background: #293264;
     color: white;
 }
