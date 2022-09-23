@@ -14,7 +14,7 @@ function App() {
   }
 
   let url = `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`;
-
+  
   React.useEffect(() => {
     fetch(url)
       .then((res) => res.json())
