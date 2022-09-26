@@ -8,7 +8,7 @@ function StartPage(props) {
     }
 
     const selectElement = 
-      <select onChange={handleChange} name="trivia_category" className="category desc">
+      <select onChange={handleChange} name="trivia_category" className="category desc" value={props.category}>
         <option value="any">Any Category</option>
         <option value="9">General Knowledge</option>
         <option value="10">Entertainment: Books</option>

@@ -8,6 +8,7 @@ function App() {
   const [questions, setQuestions] = React.useState([]);
   const [isClicked, setIsClicked] = React.useState(false);
   const [category, setCategory] = React.useState(0)
+  const [loading, setLoading] = React.useState(false);
 
   function startQuiz() {
     setIsStarted(true);
@@ -16,6 +17,7 @@ function App() {
   let url = `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`;
   
   React.useEffect(() => {
+    setLoading(true)
     fetch(url)
       .then((res) => res.json())
       .then((data) => setQArray(data.results));
@@ -53,13 +55,15 @@ function App() {
 
         return queObj;
       });
+      setLoading(false)
       setQuestions(queObj);
     }
   }, [url]);
 
-  return (
-    <div className="container">
-      {isStarted ? (
+  const loadingAni = (<div className="loader-container">
+        <div className="spinner"></div>
+      </div>)
+  const mainContent = isStarted ? (
         <Quiz
           questions={questions}
           handleClick={setQuestions}
@@ -67,8 +71,13 @@ function App() {
           setIsClicked={setIsClicked}
         />
       ) : (
-        <StartPage startQuiz={startQuiz} setCategory={setCategory}/>
-      )}
+        <StartPage startQuiz={startQuiz} setCategory={setCategory} category={category}/>
+      )
+
+  return (
+    <div className="container">
+      {loading? loadingAni :
+      mainContent}
     </div>
   );
 }
